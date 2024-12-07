@@ -15,7 +15,7 @@ const app = express();
 app.use(json());
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://stayscape-raju.netlify.com"],
   credentials: true,
 }))
 app.use("/auth", Auth);
