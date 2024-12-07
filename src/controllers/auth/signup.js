@@ -43,7 +43,7 @@ export default async function (req, res) {
         const result = await db.collection("users").insertOne(user);
         delete user.password;
         const token = jwt.sign({ id: result.insertedId.toString() }, process.env.JWT_SECRET, {});
-        res.cookie('session', token, { httpOnly: true });
+        res.cookie('session', token, { httpOnly: true, sameSite: 'none' });
         res.status(201).json({ ...user, uid: result.insertedId.toString() });
       } catch (error) {
         console.error(error);
